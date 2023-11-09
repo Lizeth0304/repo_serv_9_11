@@ -29,7 +29,7 @@ db.connect((err) => {
 
 // Ruta para manejar la inserción de datos
 app.post('/guardar-datos', (req, res) => {
-  const { expediente, c, s,remitido,documento,mes,fechaR,asunto, fecha, plazos,folios,observaciones,derivadoa,viceacade, viceinve,secre,diga,posgrado,ciencias,direccion,oficina,ciencias2,direccion2,oficina2,otro2,otro, cc2, envio, respuesta1,cc4,documento2, respuesta3, cc6,documento3,respuesta4,documentoF,fechaR2 } = req.body;
+  const { expediente, c, s,remitido,documento,mes,fechaR,asunto,dr, fecha, plazos,folios,observaciones,derivadoa,viceacade, viceinve,secre,diga,posgrado,ciencias,direccion,oficina,ciencias2,direccion2,oficina2,otro2,otro, cc2, envio, respuesta1,cc4,documento2, respuesta3, cc6,documento3,respuesta4,documentoF,fechaR2 } = req.body;
 
 
 // Construir derivadoA
@@ -59,7 +59,7 @@ const derivadoA =
 // Luego, inserta derivadoA en la base de datos
 
   const sql = 'INSERT INTO hojas_rectorado (n_exp, c, s, dependencia,documentoR, mes, fechaR, asunto, fechaD, plazos, dr, obs, derivadoa, cc1, documentoD,fechaR2, respuesta, cc2, documento2, respuesta3, cc3, documento3,respuesta4, documentoF) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-  db.query(sql, [expediente, c,s,remitido,documento,mes,fechaR, asunto, formattedFecha, plazos,folios,observaciones,derivadoA,cc2,envioF,fechaR2,respuesta1,cc4,documento2,respuesta3,cc6,documento3,respuesta4,documentoF], (err, result) => {
+  db.query(sql, [expediente, c,s,remitido,documento,mes,fechaR, asunto, formattedFecha, plazos,dr,observaciones,derivadoA,cc2,envioF,fechaR2,respuesta1,cc4,documento2,respuesta3,cc6,documento3,respuesta4,documentoF], (err, result) => {
     if (err) {
       console.error('Error al insertar datos: ' + err.message);
       res.status(500).json({ message: 'Error interno del servidor' });
@@ -207,7 +207,7 @@ res.json({ message: 'Datos editados actualizados correctamente' });
 // Ruta para manejar la inserción de datos
 app.post('/guardar-datos3', (req, res) => {
   
-  const { expediente, c, s, remitido2, documento2, mes, fechaR,asunto2,fecha2,plazos,folios2,fechaR2, observaciones2,cc2,envio2,respuesta1,cc3,documento22, respuesta3, cc4,documento3,respuesta4,documentoF,derivadoA } = req.body;
+  const { expediente, c, s, remitido2, documento2, mes,dr2, fechaR,asunto2,fecha2,plazos,folios2,fechaR2, observaciones2,cc2,envio2,respuesta1,cc3,documento22, respuesta3, cc4,documento3,respuesta4,documentoF,derivadoA } = req.body;
 
   // Convierte la fecha al formato deseado (día, mes y año)
   const formattedFecha2 = new Date(fecha2 + 'T00:00:00Z').toLocaleDateString('es-ES', {
@@ -219,7 +219,7 @@ app.post('/guardar-datos3', (req, res) => {
   
   const envioF2="H.T. N°"+envio2+"-2023-R-UNE";
    const sql = 'INSERT INTO hojas_rectorado (n_exp, c, s, dependencia,documentoR, mes, fechaR, asunto, fechaD, plazos, dr, obs, derivadoa, cc1, documentoD,fechaR2, respuesta, cc2, documento2, respuesta3, cc3, documento3,respuesta4, documentoF)VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-  db.query(sql, [expediente,c,s,remitido2,documento2,mes,fechaR,asunto2, formattedFecha2,plazos, folios2,observaciones2,derivadoA,cc2,envioF2,fechaR2,respuesta1,cc3,documento22,respuesta3,cc4,documento3,respuesta4,documentoF], (err, result) => {
+  db.query(sql, [expediente,c,s,remitido2,documento2,mes,fechaR,asunto2, formattedFecha2,plazos, dr2,observaciones2,derivadoA,cc2,envioF2,fechaR2,respuesta1,cc3,documento22,respuesta3,cc4,documento3,respuesta4,documentoF], (err, result) => {
     if (err) {
       console.error('Error al insertar datos: ' + err.message);
       res.status(500).json({ message: 'Error interno del servidor' });
